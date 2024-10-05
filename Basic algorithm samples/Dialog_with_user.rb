@@ -1,4 +1,11 @@
-user_name = ENV['USER']
+user_name = ARGV[0]
+
+# Проверяем, что имя пользователя передано
+if user_name.nil? || user_name.empty?
+  puts "Ошибка: имя пользователя не указано."
+  exit 1
+end
+
 puts "Пивет, #{user_name}! Какой язык программирования ты любишь больше всего?"
 lovely_lang_of_user = gets.chomp
 
