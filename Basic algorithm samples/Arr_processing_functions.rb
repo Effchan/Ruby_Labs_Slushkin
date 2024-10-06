@@ -29,7 +29,7 @@ def first_positive_num_array(arr)
 end
 
 # Функция с аргументами "номер метода", "путь к файлу" для обработки массива
-def choosen_work_with_arr_from_file(method, filepath)
+def choosen_work_with_arr_from_file(method_num, filepath)
   begin
     File.open(filepath, 'r') do |file|
       # Читаем содержимое файла и разбиваем его на массив
@@ -62,8 +62,10 @@ if ARGV.length != 2
   exit 1
 end
 
-method = ARGV[0].to_i
+method_num = ARGV[0].to_i
 filepath = ARGV[1]
+
+ARGV.clear
 
 # Проверка на корректность ввода номера метода
 if [1, 2, 3].include?(method_num)
