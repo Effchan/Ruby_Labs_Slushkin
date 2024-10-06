@@ -6,6 +6,8 @@ if user_name.nil? || user_name.empty?
   exit 1
 end
 
+ARGV.clear
+
 puts "Пивет, #{user_name}! Какой язык программирования ты любишь больше всего?"
 lovely_lang_of_user = gets.chomp
 
