@@ -8,4 +8,12 @@ puts "\n"
 puts student2.info
 
 puts "student #{student1.first_name()} #{student1.second_name()} #{student1.third_name()} has contact info: " + student1.has_contact_info?.to_s
-puts "student has git: " + student1.has_git?.to_s + ", student2 has git: " + student2.has_git?.to_s
+puts "student has git: " + student1.has_git?.to_s
+
+
+student1.set_contacts({ telegram: '@oleg_voevoda', git: 'http://github.org/VoeCode'})
+
+puts student1.info
+
+puts "student #{student1.first_name()} #{student1.second_name()} #{student1.third_name()} has contact info: " + student1.has_contact_info?.to_s
+puts "student #{student1.first_name()} #{student1.second_name()} #{student1.third_name()} has git: " + student1.has_git?.to_s
