@@ -1,20 +1,26 @@
 class Student
-  attr_accessor :id, :first_name, :second_name, :third_name, :telephone, :telegram, :email, :git
+  attr_reader :id, :first_name, :second_name, :third_name, :telephone, :telegram, :email, :git
+  attr_writer :id, :first_name, :second_name, :third_name
 
   def initialize(attributes = {})
     attributes.each do |key, value|
-      self.send("#{key}=", value) if respond_to?(key) && valid_field?(key, value)
+      self.send("#{key}=", value) if respond_to?("#{key}=") && valid_field?(key, value)
+    end
+  end
+
+  # Метод для установки контактных данных
+  def set_contacts(contacts = {})
+    contacts.each do |key, value|
+      instance_variable_set("@#{key}", value) if [:telephone, :telegram, :email, :git].include?(key.to_sym)
     end
   end
 
   def has_contact_info?
-    return [@telephone, @telegram, @email].include?(@telephone) ||
-    [@telegram, @email].include?(@telegram) ||
-    [@telephone, @telegram, @email].include?(@email)
+    !@telephone.nil? || !@telegram.nil? || !@email.nil?
   end
 
   def has_git?
-    (@git != nil)
+    !@git.nil?
   end
 
   def info
