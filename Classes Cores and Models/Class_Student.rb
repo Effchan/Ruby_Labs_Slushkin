@@ -11,4 +11,9 @@ class Student
     self.telegram = telegram
     self.git = git
   end
+
+  def info
+    "ID: #{@id}\nФИО: #{@first_name} #{@second_name} #{@third_name}\nКонтактная информация:\n\tТелефон: #{@telephone}\n\tTelegram: #{@telegram}\n\tEmail: #{@email}\n\tGit: #{@git}"
+  end
+  
 end
