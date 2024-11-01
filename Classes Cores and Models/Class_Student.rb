@@ -12,7 +12,7 @@ class Student
   def valid_field?(field, value)
     case field
     when :telephone
-      /\+7\(\d{3}\) \d{3}-\d{2}-\d{2}/ === value
+      /\+7\(\d{3}\)\d{3}-\d{2}-\d{2}/ === value
     else
       true
     end
