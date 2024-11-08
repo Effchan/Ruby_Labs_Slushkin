@@ -27,6 +27,37 @@ class Student
     "ID: #{@id}\nФИО: #{@first_name} #{@second_name} #{@third_name}\nКонтактная информация:\n\tТелефон: #{@telephone}\n\tTelegram: #{@telegram}\n\tEmail: #{@email}\n\tGit: #{@git}"
   end
 
+  def full_name_with_initials
+    "#{last_name} #{first_initial}.#{middle_initial}."
+  end
+
+  def first_initial
+    @first_name.chr
+  end
+
+  def middle_initial
+    @second_name.chr
+  end
+
+  def last_name
+    @third_name
+  end
+
+  def contact_info
+    return "Тел.: #{@telephone}" if !@telephone.nil?
+    return "Telegram: #{@telegram}" if !@telegram.nil?
+    return "Email: #{@email}" if !@email.nil?
+    ""
+  end
+
+  def git_info
+    "Git: #{@git}"
+  end
+
+  def get_info
+    "#{full_name_with_initials}; #{contact_info}; #{git_info}"
+  end
+
   private
 
   def self.is_valid_number?(value)
