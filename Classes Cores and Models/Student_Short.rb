@@ -1,7 +1,7 @@
 require_relative 'C://Users//user//Desktop//s1.rb'
 
 class Student_short < Student
-  attr_reader :id, :name_and_initials, :git, :contact
+  attr_reader :id, :name_and_initials, :contact, :git
 
   def initialize(args)
     @id = args[:id]
@@ -16,5 +16,4 @@ class Student_short < Student
   end
 
   private_class_method :new
-  
 end
