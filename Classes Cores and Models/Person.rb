@@ -9,22 +9,6 @@ class Person
 
   private
 
-  def self.is_valid_number?(value)
-    /\+7\(\d{3}\)\d{3}-\d{2}-\d{2}/ === value
-  end
-
-  def self.is_valid_username?(value)
-    /^[a-zA-Z0-9_]+$/ === value
-  end
-
-  def self.is_valid_email?(value)
-    /\A([\w+\-].?)+@[a-z\d\-]+(\.[a-z]{2,})\z/ === value
-  end
-
-  def self.is_valid_url?(value)
-    /^(https?:\/\/)?((github|bitbucket)\.org)(:[^\/\s]+)?(\/[^\s]+)$/ === value
-  end
-
   def self.is_valid_first_name?(value)
     /\A[A-ZА-я][a-zа-я]*\z/ === value
   end
