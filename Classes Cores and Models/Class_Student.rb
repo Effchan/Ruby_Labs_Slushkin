@@ -9,7 +9,7 @@ class Student < Person
 
   def set_contacts(contacts = {})
     contacts.each do |key, value|
-      instance_variable_set("@#{key}", value) if [:telephone, :telegram, :email, :git].include?(key.to_sym)
+      instance_variable_set("@#{key}", value) if [:telephone, :telegram, :email, :git].include?(key.to_sym) && valid_field?(key, value)
     end
   end
 
@@ -21,14 +21,15 @@ class Student < Person
     !@git.nil?
   end
 
-  def contact_info
-    info = []
-    info << "Тел.: #{@telephone}" if !@telephone.nil?
-    info << "Telegram: #{@telegram}" if !@telegram.nil?
-    info << "Email: #{@email}" if !@email.nil?
-    info.join(", ")
+  def validate
+    has_contact_info? && has_git?
   end
-  
+
+  def contact_info
+    info = "Тел.: #{@telephone}" if !@telephone.nil?
+    info = "Telegram: #{@telegram}" if !@telegram.nil?
+    info = "Email: #{@email}" if !@email.nil?
+  end
 
   def git_info
     "Git: #{@git}"
@@ -39,63 +40,7 @@ class Student < Person
   end
 
   def full_name_with_initials
-    "#{last_name} #{first_initial}.#{middle_initial}."
-  end
-
-  def first_initial
-    @first_name.chr
-  end
-
-  def middle_initial
-    @second_name.chr
-  end
-
-  def last_name
-    @third_name
-  end
-
-  def self.is_valid_number?(value)
-    /\+7\(\d{3}\)\d{3}-\d{2}-\d{2}/ === value
-  end
-
-  def self.is_valid_username?(value)
-    /^[a-zA-Z0-9_]+$/ === value
-  end
-
-  def self.is_valid_email?(value)
-    /\A([\w+\-].?)+@[a-z\d\-]+(\.[a-z]{2,})\z/ === value
-  end
-
-  def self.is_valid_url?(value)
-    /^(https?:\/\/)?((github|bitbucket)\.org)(:[^\/\s]+)?(\/[^\s]+)$/ === value
-  end
-
-  def self.is_valid_first_name?(value)
-    /\A[A-ZА-я][a-zа-я]*\z/ === value
-  end
-
-  def self.is_valid_middle_name?(value)
-    /\A[A-ZА-я][a-zа-я]*\z/ === value
-  end
-
-  def self.is_valid_last_name?(value)
-    /\A[A-ZА-я][a-zа-я]*\z/ === value
-  end
-
-  def self.is_valid_number?(value)
-    /\+7\(\d{3}\)\d{3}-\d{2}-\d{2}/ === value
-  end
-
-  def self.is_valid_username?(value)
-    /^[a-zA-Z0-9_]+$/ === value
-  end
-
-  def self.is_valid_email?(value)
-    /\A([\w+\-].?)+@[a-z\d\-]+(\.[a-z]{2,})\z/ === value
-  end
-
-  def self.is_valid_url?(value)
-    /^(https?:\/\/)?((github|bitbucket)\.org)(:[^\/\s]+)?(\/[^\s]+)$/ === value
+    "#{@third_name} #{first_initial}.#{middle_initial}."
   end
 
   def valid_field?(field, value)
@@ -113,4 +58,31 @@ class Student < Person
       true
     end
   end
+
+  private
+
+  def first_initial
+    @first_name.chr
+  end
+
+  def middle_initial
+    @second_name.chr
+  end
+
+  def self.is_valid_number?(value)
+    /\+7\(\d{3}\)\d{3}-\d{2}-\d{2}/ === value
+  end
+
+  def self.is_valid_username?(value)
+    /^[a-zA-Z0-9_]+$/ === value
+  end
+
+  def self.is_valid_email?(value)
+    /\A([\w+\-].?)+@[a-z\d\-]+(\.[a-z]{2,})\z/ === value
+  end
+
+  def self.is_valid_url?(value)
+    /^(https?:\/\/)?((github|bitbucket)\.com)(:[^\/\s]+)?(\/[^\s]+)$/ === value
+  end
+  
 end
