@@ -19,7 +19,7 @@ class Student_short < Student
     new(id: id, name_and_initials: data[0], contact: data[1], git: data[2])
   end
 
-  def short_validate
+  def validate
     !@contact.nil? || has_git?
   end
 
