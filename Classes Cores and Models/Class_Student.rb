@@ -21,7 +21,7 @@ class Student < Person
     !@git.nil?
   end
 
-  def validate
+  def validate?
     has_contact_info? && has_git?
   end
 
@@ -31,12 +31,8 @@ class Student < Person
     info = "Email: #{@email}" if !@email.nil?
   end
 
-  def git_info
-    "Git: #{@git}"
-  end
-
   def get_info
-    "#{full_name_with_initials}; #{contact_info}; #{git_info}"
+    "#{full_name_with_initials}; #{contact_info}; #{@git}"
   end
 
   def full_name_with_initials
